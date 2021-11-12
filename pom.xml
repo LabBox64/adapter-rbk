@@ -18,7 +18,7 @@
 
     <properties>
         <java.version>15</java.version>
-        <kotlin.version>1.4.31</kotlin.version>
+        <kotlin.version>1.5.31</kotlin.version>
 
         <server.port>8022</server.port>
         <management.port>8023</management.port>
@@ -205,7 +205,7 @@
             <plugin>
                 <groupId>com.github.gantsign.maven</groupId>
                 <artifactId>ktlint-maven-plugin</artifactId>
-                <version>1.9.0</version>
+                <version>1.11.0</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
