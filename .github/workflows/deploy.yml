@@ -24,9 +24,9 @@ jobs:
       - name: set global env
         id: global_env
         run: |
-          echo "::set-output name=REPOSITORY_LC::${OWNER,,}"
+          echo "::set-output name=REPOSITORY_OWNER_LC::${GITHUB_REPOSITORY_OWNER,,}"
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
-          echo "::set-output name=DOCKERHUB_IMAGE_NAME::gb64/${OWNER,,}/${GITHUB_REPOSITORY#*/}"
+          echo "::set-output name=DOCKERHUB_IMAGE_NAME::gb64/${GITHUB_REPOSITORY_OWNER,,}/${GITHUB_REPOSITORY#*/}"
 
       - name: Build and tag image
         run: |
@@ -38,4 +38,4 @@ jobs:
       - name: Publish image
         env:
           IMAGE_NAME: $GITHUB_REPOSITORY
-        run: docker push "gb64/$REPOSITORY_LC/${{ steps.global_env.outputs.IMAGE_NAME }}"
+        run: docker push "gb64/REPOSITORY_OWNER_LC/${{ steps.global_env.outputs.IMAGE_NAME }}"
