@@ -28,10 +28,13 @@ jobs:
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::gb64/${GITHUB_REPOSITORY_OWNER,,}/${GITHUB_REPOSITORY#*/}"
 
-      - name: Build and tag image
+      - name: create env file
         run: |
           touch .env
           echo REGISTRY=${{ secrets.DOCKER_REGISTRY }} >> .env
+
+      - name: Build and tag image
+        run: |
           docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_SHA::8}" ./target
 
       - name: Docker login
