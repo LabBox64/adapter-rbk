@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component
 class EntryStateModelToStatusRequestConverter : Converter<EntryStateModelImpl, StatusRequest> {
     override fun convert(model: EntryStateModelImpl): StatusRequest {
         val options: Map<String, String> = model.options
-        return StatusRequest("") 
+        return StatusRequest("")
     }
 }

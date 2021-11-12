@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component
 class EntryStateModelToMoneyTransferRequestConverter : Converter<EntryStateModelImpl, MoneyTransferRequest> {
     override fun convert(model: EntryStateModelImpl): MoneyTransferRequest {
         val options = model.options
-        return MoneyTransferRequest("") 
+        return MoneyTransferRequest("")
     }
 }
