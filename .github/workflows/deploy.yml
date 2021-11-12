@@ -19,7 +19,8 @@ jobs:
           distribution: 'adopt'
 
       - name: Maven Package
-        run: mvn -B clean compile package -DskipTests
+        run: |
+          mvn -B clean compile package -DskipTests -Ddockerfile.registry=${{ secrets.DOCKER_REGISTRY }}
 
       - name: set global env
         id: global_env
