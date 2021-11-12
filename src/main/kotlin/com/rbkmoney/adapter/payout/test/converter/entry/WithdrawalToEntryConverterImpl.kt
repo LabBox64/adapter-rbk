@@ -28,15 +28,15 @@ class WithdrawalToEntryConverterImpl(
         val adapterState = adapterStateDeserializer.read(data)
         val trxinfo = adapterState.trxInfo
         trxinfo?.trxExtra?.let {
-        entryModel.state = adapterState
-        entryModel.withdrawalId = withdrawal.getId()
-        entryModel.amount = withdrawal.body.amount
-        entryModel.currencyCode = withdrawal.body.currency.symbolicCode
+            entryModel.state = adapterState
+            entryModel.withdrawalId = withdrawal.getId()
+            entryModel.amount = withdrawal.body.amount
+            entryModel.currencyCode = withdrawal.body.currency.symbolicCode
 
-        val cardData = cdsClientStorage.getCardData(withdrawal)
-        entryModel.pan = cardData.pan
-        entryModel.options = options
-
+            val cardData = cdsClientStorage.getCardData(withdrawal)
+            entryModel.pan = cardData.pan
+            entryModel.options = options
+        }
         return entryModel
     }
 }
