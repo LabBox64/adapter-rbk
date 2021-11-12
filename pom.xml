@@ -9,11 +9,11 @@
         <version>2.0.11</version>
     </parent>
 
-    <artifactId>adapter-test-payout</artifactId>
+    <artifactId>adapter-rbk</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>adapter-test-payout</name>
+    <name>adapter-rbk</name>
     <description></description>
 
     <properties>
