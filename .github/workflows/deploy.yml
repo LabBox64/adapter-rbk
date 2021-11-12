@@ -19,8 +19,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Maven Package
-        run: |
-          mvn -B clean compile package -DskipTests -Ddockerfile.registry=${{ secrets.DOCKER_REGISTRY }}
+        run: mvn -B clean compile package -DskipTests -Ddockerfile.registry=${{ secrets.DOCKER_REGISTRY }}
 
       - name: set global env
         id: global_env
@@ -28,11 +27,6 @@ jobs:
           echo "::set-output name=REPOSITORY_OWNER_LC::${GITHUB_REPOSITORY_OWNER,,}"
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::gb64/${GITHUB_REPOSITORY_OWNER,,}/${GITHUB_REPOSITORY#*/}"
-
-      - name: create env file
-        run: |
-          touch ./target/.env
-          echo REGISTRY=${{ secrets.DOCKER_REGISTRY }} >> ./target/.env
 
       - name: Build and tag image
         run: |
