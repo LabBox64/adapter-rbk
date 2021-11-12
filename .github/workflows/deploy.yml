@@ -24,17 +24,18 @@ jobs:
       - name: set global env
         id: global_env
         run: |
+          echo "::set-output name="REPOSITORY_LC::${OWNER,,}"
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
-          echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY#*/}"
+          echo "::set-output name=DOCKERHUB_IMAGE_NAME::gb64/${OWNER,,}/${GITHUB_REPOSITORY#*/}"
 
       - name: Build and tag image
         run: |
           docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_SHA::8}" .
 
       - name: Docker login
-        run: docker login docker.pkg.github.com -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+        run: docker login gb64 -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
 
       - name: Publish image
         env:
           IMAGE_NAME: $GITHUB_REPOSITORY
-        run: docker push "docker.pkg.github.com/$GITHUB_REPOSITORY/${{ steps.global_env.outputs.IMAGE_NAME }}"
+        run: docker push "gb64/$REPOSITORY_LC/${{ steps.global_env.outputs.IMAGE_NAME }}"
