@@ -12,9 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Build
-    uses: LabBox64/jdk-composite-action/jdk-build@v0.0.4
-    with:
-      jdk-version: '15'
-      jdk-distribution: 'adopt'
+      uses: LabBox64/jdk-composite-action/jdk-build@v0.0.4
+      with:
+        jdk-version: '15'
+        jdk-distribution: 'adopt'
