@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-
+      
       - name: Build
         uses: LabBox64/jdk-composite-action/jdk-build@v0.0.4
         with:
           jdk-version: '15'
           jdk-distribution: 'adopt'
-
+        
       - name: Init env variable
         run: |
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::gb64/${GITHUB_REPOSITORY_OWNER,,}/${GITHUB_REPOSITORY#*/}"
