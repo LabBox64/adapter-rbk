@@ -1,4 +1,4 @@
-name: Deploy docker image
+name: Deploy Docker Image
 
 on:
   push:
@@ -13,16 +13,12 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build
-        uses: LabBox64/jdk-composite-action/jdk-build@v0.0.3
+        uses: LabBox64/jdk-composite-action/jdk-build@v0.0.4
         with:
           jdk-version: '15'
           jdk-distribution: 'adopt'
 
-      - name: Maven Package
-        run: mvn -B clean compile package -DskipTests -Ddockerfile.registry=${RBK_DOCKER_REGISTRY}
-
-      - name: set global env
-        id: global_env
+      - name: Init env variable
         run: |
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::gb64/${GITHUB_REPOSITORY_OWNER,,}/${GITHUB_REPOSITORY#*/}"
 
