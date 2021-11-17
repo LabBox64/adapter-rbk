@@ -1,4 +1,4 @@
-name: Build
+name: Build artifact
 
 on:
   pull_request:
@@ -9,17 +9,18 @@ on:
       - 'main'
 
 jobs:
-  build:
 
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 15
-      uses: actions/setup-java@v2
+
+    - name: Build
+      uses: LabBox64/jdk-composite-action/jdk-composite-action@v0.0.2
       with:
-        java-version: '15'
-        distribution: 'adopt'
+        jdk-version: '15'
+        jdk-distribution: 'adopt'
 
     - name: Maven Verify
       run: mvn -B clean verify
