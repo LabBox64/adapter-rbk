@@ -7,29 +7,13 @@ on:
 
 jobs:
 
-  build_docker_image:
+  build:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+      - uses: LabBox64/jdk-composite-action/jdk-build@v0.0.7
 
-      - name: Build
-        uses: LabBox64/jdk-composite-action/jdk-build@v0.0.5
-        with:
-          jdk-version: '15'
-          jdk-distribution: 'adopt'
-
-      - name: Init env variable
-        run: |
-          echo "::set-output name=DOCKERHUB_IMAGE_NAME::gb64/${GITHUB_REPOSITORY_OWNER,,}/${GITHUB_REPOSITORY#*/}"
-
-      - name: Build and tag image
-        run: |
-          docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_SHA::8}" ./target
-
-      - name: Docker login
-        run: docker login gb64 -u ${{secrets.DOCKER_HUB_USERNAME}} -p ${{secrets.DOCKER_HUB_PASSWORD}}
-
-      - name: Publish image
-        env:
-          IMAGE_NAME: $GITHUB_REPOSITORY
-        run: docker push "gb64/${RBK_REPOSITORY_OWNER_LC}/${{ steps.global_env.outputs.IMAGE_NAME }}"
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: LabBox64/jdk-composite-action/jdk-deploy@v0.0.7
