@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: LabBox64/jdk-composite-action/jdk-build@v0.0.7
+      - uses: LabBox64/jdk-composite-action/jdk-build@v0.0.8
 
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: LabBox64/jdk-composite-action/jdk-deploy@v0.0.7
+      - uses: LabBox64/jdk-composite-action/jdk-deploy@v0.0.8
