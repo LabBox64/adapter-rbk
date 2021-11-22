@@ -7,15 +7,12 @@ on:
 
 jobs:
 
-  build:
+  build-and-deploy:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: LabBox64/jdk-composite-action/jdk-build@v0.0.11
-
-  deploy:
-    runs-on: ubuntu-18.04
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: LabBox64/jdk-composite-action/jdk-deploy@v0.0.11
+      - uses: LabBox64/build-actions/jdk-build@v1.0.0
+      - uses: LabBox64/build-actions/jdk-deploy@v1.0.0
+        with:
+          registry-username: ${{secrets.DOCKER_HUB_USERNAME}}
+          registry-password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
