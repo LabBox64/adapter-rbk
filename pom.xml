@@ -25,6 +25,7 @@
         <exposed.ports>${server.port} ${management.port}</exposed.ports>
         <dockerfile.registry>${env.REGISTRY}</dockerfile.registry>
         <dockerfile.base.service.tag>7e0c98bb</dockerfile.base.service.tag>
+        <shared-resources.version>1.4.0</shared-resources.version>
     </properties>
 
     <dependencies>
@@ -58,7 +59,7 @@
         <dependency>
             <groupId>com.rbkmoney</groupId>
             <artifactId>shared-resources</artifactId>
-            <version>1.4.0</version>
+            <version>${shared-resources.version}</version>
         </dependency>
         <dependency>
             <groupId>com.rbkmoney</groupId>
