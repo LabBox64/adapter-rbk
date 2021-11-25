@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: LabBox64/build-actions/packages/jdk-build@v1.0.5
-      - uses: LabBox64/build-actions/packages/deploy-docker@v1.0.5
+      - uses: LabBox64/build-actions/packages/jdk-build@v1.0.6
+      - uses: LabBox64/build-actions/packages/deploy-docker@v1.0.6
         with:
           registry-username: ${{secrets.DOCKER_HUB_USERNAME}}
           registry-password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
