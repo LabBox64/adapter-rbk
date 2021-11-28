@@ -16,3 +16,8 @@ jobs:
         with:
           registry-username: ${{secrets.DOCKER_HUB_USERNAME}}
           registry-password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
+      - uses: LabBox64/action-autotag@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          with-v: true
