@@ -12,3 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: LabBox64/build-actions/packages/jdk-build@v1.0.7
+      - uses: LabBox64/action-autotag@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN}}
